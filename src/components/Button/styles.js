@@ -10,6 +10,7 @@ border-color: #FFFAFA;
 align-items: center;
 color: white;
 font-size: 15px;
+margin: 0 5%;
 `;
 
 
