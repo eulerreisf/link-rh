@@ -1,7 +1,7 @@
 import React from 'react';
-import { useHistory } from 'react-router-dom';
+import { useHistory, withRouter } from 'react-router-dom';
 import { useForm } from 'react-hook-form';
-
+import api from 'services/api';
 //  Styled Components
 import { SigninContainer, Form, GroupButtons, Title } from './styles';
 
@@ -9,12 +9,22 @@ import { SigninContainer, Form, GroupButtons, Title } from './styles';
 import Button from 'components/Button';
 import Input from 'components/Input';
 
-const Signin = () => {
+const Signup = () => {
   const { register, handleSubmit } = useForm();
 
   const history = useHistory();
 
-  const handleSave = () => history.push('./sigin');
+  const handleSave = async e => {
+    const { firstName, lastName, email, password } = e;
+    try {
+      await api.post("/users", { firstName, lastName, email, password });
+      history.push("/");
+    } catch (err) {
+      console.log(err);
+      // this.setState({ error: "Ocorreu um erro ao registrar sua conta. T.T" });
+    }
+
+  };
 
   return (
     <SigninContainer >
@@ -33,4 +43,4 @@ const Signin = () => {
 
 };
 
-export default Signin;
+export default withRouter(Signup);
