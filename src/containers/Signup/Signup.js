@@ -21,7 +21,6 @@ const Signup = () => {
       history.push("/");
     } catch (err) {
       console.log(err);
-      // this.setState({ error: "Ocorreu um erro ao registrar sua conta. T.T" });
     }
 
   };
